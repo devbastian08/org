@@ -1,11 +1,12 @@
 import React from "react";
 import "./CampoTexto.css";
 
-const CampoTexto = () => {
+const CampoTexto = (props) => {
+  const modplaceholder = `${props.placeholder}...`;
   return (
     <div className="campo-texto">
-      <label>Nombre</label>
-      <input placeholder="ingresar nombre" />
+      <label>{props.titulo}</label>
+      <input placeholder={modplaceholder} />
     </div>
   );
 };
