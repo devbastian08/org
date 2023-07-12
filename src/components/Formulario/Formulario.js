@@ -5,11 +5,12 @@ import CampoTexto from "../CampoTexto/CampoTexto";
 import ListaOpciones from "../ListaOpciones";
 import Boton from "../Boton";
 
-const Formulario = () => {
+const Formulario = (props) => {
   const [nombre, updateNombre] = useState("");
   const [puesto, updatePuesto] = useState("");
   const [foto, updateFoto] = useState("");
   const [equipo, updateEquipo] = useState("");
+  const { registrarColaborador } = props;
 
   const Envio = (event) => {
     event.preventDefault();
@@ -19,7 +20,7 @@ const Formulario = () => {
       foto,
       equipo,
     };
-    console.log(envioDatos);
+    registrarColaborador(envioDatos);
   };
   return (
     <section className="formulario">
