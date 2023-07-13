@@ -5,9 +5,10 @@ import Header from "./components/Header/Header";
 import Formulario from "./components/Formulario/Formulario";
 import MiOrg from "./components/MiOrg";
 import Equipo from "./components/Equipo";
+import Footer from "./components/Footer";
 
 function App() {
-  const [mostrarForm, actualizarMostrar] = useState(false);
+  const [mostrarForm, actualizarMostrar] = useState(true);
   const [colaboradores, actualizarColaboradores] = useState([]);
   const cambiarMostrar = () => {
     actualizarMostrar(!mostrarForm);
@@ -73,6 +74,7 @@ function App() {
           />
         );
       })}
+      <Footer />
     </div>
   );
 }

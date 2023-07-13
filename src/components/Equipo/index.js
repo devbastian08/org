@@ -15,7 +15,11 @@ const Equipo = (props) => {
           <h3 style={titulostyle}>{titulo}</h3>
           <div className="colaboradores">
             {colaboradores.map((colaborador, index) => (
-              <Colaborador datos={colaborador} key={index} />
+              <Colaborador
+                datos={colaborador}
+                key={index}
+                colorprincipal={colorprincipal}
+              />
             ))}
           </div>
         </section>
