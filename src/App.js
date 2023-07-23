@@ -10,14 +10,7 @@ import Footer from "./components/Footer";
 function App() {
   const [mostrarForm, actualizarMostrar] = useState(true);
   const [colaboradores, actualizarColaboradores] = useState([]);
-  const cambiarMostrar = () => {
-    actualizarMostrar(!mostrarForm);
-  };
-  const registrarColaborador = (colaborador) => {
-    console.log(colaborador);
-    actualizarColaboradores([...colaboradores, colaborador]);
-  };
-  const equipos = [
+  const [equipos, actualizarEquipos] = useState([
     {
       titulo: "Programacion",
       colorprincipal: "#57C278",
@@ -53,7 +46,26 @@ function App() {
       colorprincipal: "#FF8A29",
       colorsecundario: "#FFEEDF",
     },
-  ];
+  ]);
+  const cambiarMostrar = () => {
+    actualizarMostrar(!mostrarForm);
+  };
+  const registrarColaborador = (colaborador) => {
+    console.log(colaborador);
+    actualizarColaboradores([...colaboradores, colaborador]);
+  };
+
+  const eliminarColaboradores = () => {};
+
+  const actualizarColor = (color, titulo) => {
+    const equiposActualizados = equipos.map((equipo) => {
+      if (equipo.titulo === titulo) {
+        equipo.colorprincipal = color;
+      }
+      return equipo;
+    });
+    actualizarEquipos(equiposActualizados);
+  };
 
   return (
     <div>
@@ -71,6 +83,8 @@ function App() {
             colaboradores={colaboradores.filter(
               (colaborador) => colaborador.equipo === equipo.titulo
             )}
+            eliminarColaboradores={eliminarColaboradores}
+            actualizarColor={actualizarColor}
           />
         );
       })}
