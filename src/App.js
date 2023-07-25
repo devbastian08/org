@@ -1,4 +1,5 @@
 import React from "react";
+import { v4 as uuid } from "uuid";
 import { useState } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
@@ -12,36 +13,43 @@ function App() {
   const [colaboradores, actualizarColaboradores] = useState([]);
   const [equipos, actualizarEquipos] = useState([
     {
+      id: uuid(),
       titulo: "Programacion",
       colorprincipal: "#57C278",
       colorsecundario: "#D9F7E9",
     },
     {
+      id: uuid(),
       titulo: "Front End",
       colorprincipal: "#82CFFA",
       colorsecundario: "#E8F8FF",
     },
     {
+      id: uuid(),
       titulo: "Data science",
       colorprincipal: "#A6D157",
       colorsecundario: "#F0F8E2",
     },
     {
+      id: uuid(),
       titulo: "Devops",
       colorprincipal: "#E06B69",
       colorsecundario: "#FDE7E8",
     },
     {
+      id: uuid(),
       titulo: "Ux y Diseño",
       colorprincipal: "#DB6EBF",
       colorsecundario: "#FAE9F5",
     },
     {
+      id: uuid(),
       titulo: "Movil",
       colorprincipal: "#FFBA05",
       colorsecundario: "#FFF5D9",
     },
     {
+      id: uuid(),
       titulo: "Innovacion y Gestion",
       colorprincipal: "#FF8A29",
       colorsecundario: "#FFEEDF",
@@ -55,11 +63,17 @@ function App() {
     actualizarColaboradores([...colaboradores, colaborador]);
   };
 
-  const eliminarColaboradores = () => {};
+  const eliminarColaboradores = (id) => {
+    console.log("eliminar colaborados", id);
+    const nuevosColaboradores = colaboradores.filter(
+      (colaborador) => colaborador.id !== id
+    );
+    actualizarColaboradores(nuevosColaboradores);
+  };
 
-  const actualizarColor = (color, titulo) => {
+  const actualizarColor = (color, id) => {
     const equiposActualizados = equipos.map((equipo) => {
-      if (equipo.titulo === titulo) {
+      if (equipo.id === id) {
         equipo.colorprincipal = color;
       }
       return equipo;
@@ -71,7 +85,10 @@ function App() {
     <div>
       <Header />
       {mostrarForm && (
-        <Formulario registrarColaborador={registrarColaborador} />
+        <Formulario
+          equipos={equipos.map((equipo) => equipo.titulo)}
+          registrarColaborador={registrarColaborador}
+        />
       )}
       {/*mostrarForm === true ? <Formulario /> : <div />*/}
       <MiOrg cambiarMostrar={cambiarMostrar} />
