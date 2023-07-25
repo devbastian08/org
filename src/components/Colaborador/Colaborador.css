@@ -43,6 +43,7 @@
 }
 
 .eliminar{
+    cursor: pointer;
     position: absolute;
     right: -15px;
     top: -15px;
